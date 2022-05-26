@@ -78,7 +78,6 @@ int main(int argc, char const *argv[]) {
         printf("%s\n", buffer);
         write(new_socket, hello, strlen(hello));
         printf("---------------Hello message sent---------------\n");
-        close(new_socket);
     }
     close(server_fd);
     return 0;
