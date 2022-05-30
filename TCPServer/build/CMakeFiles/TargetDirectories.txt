@@ -1,0 +1,3 @@
+/Users/andrey/Projects/ft_irc/TCPServer/build/CMakeFiles/TCPServer.dir
+/Users/andrey/Projects/ft_irc/TCPServer/build/CMakeFiles/edit_cache.dir
+/Users/andrey/Projects/ft_irc/TCPServer/build/CMakeFiles/rebuild_cache.dir
