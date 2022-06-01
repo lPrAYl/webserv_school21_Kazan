@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.21"
+						"string" : "3.23"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TCPServer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TCPServer-Debug-d8a7b0c71c495cfc920e.json",
+					"jsonFile" : "target-TCPServer-Debug-5764e457a39eb154fa36.json",
 					"name" : "TCPServer",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/andrey/Projects/ft_irc/TCPServer/build",
-		"source" : "/Users/andrey/Projects/ft_irc/TCPServer"
+		"build" : "/home/ascadian/Projects/webserv_school21_Kazan/TCPServer/build",
+		"source" : "/home/ascadian/Projects/webserv_school21_Kazan/TCPServer"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 4
 	}
 }

@@ -1,0 +1,5 @@
+# ninja log v5
+1	459	1653951376814129259	CMakeFiles/TCPServer.dir/Client.cpp.o	b7f70828a0456bca
+0	448	1653951376802128949	CMakeFiles/TCPServer.dir/Server.cpp.o	5f9818d86b2f3cb1
+1	340	1654021011415020525	CMakeFiles/TCPServer.dir/Server.cpp.o	85aa9131594f4024
+1	353	1654021011431021097	CMakeFiles/TCPServer.dir/Client.cpp.o	a30e9e7630faf82c
