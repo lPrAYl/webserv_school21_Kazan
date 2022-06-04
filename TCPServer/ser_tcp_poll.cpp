@@ -1,4 +1,4 @@
-#include <stdio.h>
+//#include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,16 +7,22 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#include <iostream>
+//#include <iostream>
+#include <poll.h>
 
-#define	SERVER_PORT		5555
+#define	PORT		5555
 #define	SERVER_NAME		"127.0.0.1"
 #define BUFLEN			512
 
 void	writeToClient(int fd, char *buffer);
 int	readFromClient(int fd, char *buffer);
 
+#include <vector>
+
 int	main(void) {
+
+	std::vector<> a;
+
 	int	i, err, opt = 1;
 	int	sock, new_sock;
 	struct sockaddr_in	addr;
@@ -24,17 +30,17 @@ int	main(void) {
 	char buf[BUFLEN];
 	socklen_t	size;
 
-	if ((sock = socket(PF_INET, SOCK_STREAM, 0) < 0) {
+	if ((sock = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
 		perror("Server: cannot create socket");
 		exit(EXIT_FAILURE);
 	}
-	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const void*)&opt, sizeof opt);
+	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const void*)&opt, sizeof(opt));
 
 	addr.sin_family = AF_INET;
-	addr.sin_port = SERVER_PORT;
+	addr.sin_port = htons(PORT);
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	if ((bind(sock, (struct sockaddr*)&addr, sizeof addr) < 0) {
+	if ((bind(sock, (struct sockaddr*)&addr, sizeof(addr))) < 0) {
 		perror("Server: cannot bind socket");
 		exit(EXIT_FAILURE);
 	}
@@ -56,27 +62,28 @@ int	main(void) {
 			exit(EXIT_FAILURE);
 		}
 		if (ret > 0) {
-			for (int i = 0; i < num_set; ++i) {
+			for (int i = 0; i < num_set; i++) {
 				if (act_set[i].revents & POLLIN) {
 					printf("get POLLIN at fd %d\n", act_set[i].fd);
 					act_set[i].revents &= ~POLLIN;
 					if (i == 0) {
 						size = sizeof(client);
 						new_sock = accept(act_set[i].fd,
-											(struct sockaddr*)&client, size);
+											(struct sockaddr*)&client, &size);
 						printf("new client at port %u\n",
 						 								ntohs(client.sin_port));
 						if (num_set < 100) {
 							act_set[num_set].fd = new_sock;
 							act_set[num_set].events = POLLIN;
 							act_set[num_set].revents = 0;
+							num_set++;
 						} else {
 							printf("no more sockets for client\n");
 							close(new_sock);
 						}
 					} else {
 						err = readFromClient(act_set[i].fd, buf);
-						printf("%d [%s] %p\n", err.buf, strstr(buf, "stop"));
+						printf("%d [%s] %p\n", err, buf, strstr(buf, "stop"));
 						if (err < 0 || strstr(buf, "stop")) {
 							printf("get stop\n");
 							close(act_set[i].fd);
@@ -86,6 +93,7 @@ int	main(void) {
 								i--;
 							}
 						} else {
+							printf("Hello");
 							writeToClient(act_set[i].fd, buf);
 						}
 					}
@@ -100,10 +108,10 @@ void	writeToClient(int fd, char *buffer) {
 	int	nbytes;
 	unsigned char	*s;
 
-	for (s = (unsigned char*)buf; *s; s++)
+	for (s = (unsigned char*)buffer; *s; s++)
 		*s = toupper(*s);
-	nbytes = write(fd, buffer, strlen(buf) + 1);
-	fprintf(stdout, "Write back: %s\nnbytes=%d\n", buf, nbytes);
+	nbytes = write(fd, buffer, strlen(buffer) + 1);
+	fprintf(stdout, "Write back: %s\nnbytes=%d\n", buffer, nbytes);
 
 	if (nbytes < 0)
 		perror("Server write failure");
@@ -112,14 +120,15 @@ void	writeToClient(int fd, char *buffer) {
 int readFromClient(int fd, char *buffer) {
 	int	nbytes;
 
-	nbytes = read(fd, buf, BUFLEN);
+	nbytes = read(fd, buffer, BUFLEN);
 	if (nbytes < 0) {
-		perror("read");
+		perror("Server: read failure");
 		return -1;
 	} else if (nbytes == 0) {
-		fprintf(stderr, "Client: no message\n");
+		return -1;
 	} else {
-		fprintf(stdout, "Server got message: %s\n", buf);
+		fprintf(stdout, "Server got message: %s\n", buffer);
+		return 0;
 	}
 	return 0;
 }
