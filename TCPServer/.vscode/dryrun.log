@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/gtyene/Projects/webserv_school21_Kazan/TCPServer'
-make: Leaving directory `/Users/gtyene/Projects/webserv_school21_Kazan/TCPServer'
- 
-make: *** No targets specified and no makefile found.  Stop.
-

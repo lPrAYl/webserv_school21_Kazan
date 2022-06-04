@@ -1,3 +1,0 @@
-/home/ascadian/Projects/webserv_school21_Kazan/TCPServer/build/CMakeFiles/TCPServer.dir
-/home/ascadian/Projects/webserv_school21_Kazan/TCPServer/build/CMakeFiles/edit_cache.dir
-/home/ascadian/Projects/webserv_school21_Kazan/TCPServer/build/CMakeFiles/rebuild_cache.dir

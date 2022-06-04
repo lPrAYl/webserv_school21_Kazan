@@ -1,6 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/gtyene/Projects/webserv_school21_Kazan'
+c++ -std=c++98 -pedantic -Wall -Werror -Wextra -O2 -c -o sources/main.o sources/main.cpp
+c++ -std=c++98 -pedantic -Wall -Werror -Wextra -O2 -c -o sources/Server.o sources/Server.cpp
+ 
+c++ -o ircsrv sources/main.o sources/Server.o
 make: Leaving directory `/Users/gtyene/Projects/webserv_school21_Kazan'
  
-make: *** No targets specified and no makefile found.  Stop.
-

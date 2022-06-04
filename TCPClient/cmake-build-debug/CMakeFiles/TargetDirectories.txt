@@ -1,3 +1,0 @@
-/Users/artem/CLionProjects/TCPClient/cmake-build-debug/CMakeFiles/TCPClient.dir
-/Users/artem/CLionProjects/TCPClient/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/artem/CLionProjects/TCPClient/cmake-build-debug/CMakeFiles/rebuild_cache.dir
